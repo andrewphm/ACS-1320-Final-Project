@@ -11,9 +11,9 @@ function YoutubeIFrame({ iFrame }) {
     <iframe
       className="w-full aspect-video"
       src={srcMatch[1]}
-      frameborder="0"
+      frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
+      allowFullScreen
       title={titleMatch[1]}
     ></iframe>
   );

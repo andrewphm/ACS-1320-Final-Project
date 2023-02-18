@@ -3,6 +3,7 @@ import './snoowrap-v1';
 import React, { useState, useEffect } from 'react';
 import Home from './pages/Home';
 import Post from './components/Post';
+import Feed from './components/Feed';
 
 function App() {
   const [posts, setPosts] = useState(null);
@@ -21,19 +22,19 @@ function App() {
     async function fetchPosts() {
       const subreddit = 'videos';
       const res = await reddit.getHot(subreddit);
-      setPosts(res[0]);
+      setPosts(res);
     }
 
     fetchPosts();
   }, []);
 
   return (
-    <div className="App bg-black  h-screen">
+    <div className="App bg-black  min-h-screen">
       <Home />
 
       {posts && (
         <div className="w-full flex justify-center items-center">
-          <Post post={posts} />
+          <Feed posts={posts} />
         </div>
       )}
     </div>
