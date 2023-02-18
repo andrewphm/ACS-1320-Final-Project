@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     async function fetchPosts() {
-      const subreddit = 'relationships';
+      const subreddit = 'videos';
       const res = await reddit.getHot(subreddit);
       setPosts(res[0]);
     }

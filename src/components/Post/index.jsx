@@ -1,4 +1,6 @@
 import React from 'react';
+import { formatDistance } from 'date-fns';
+import { Link } from 'react-router-dom';
 
 function Post({ post }) {
   const {
@@ -6,6 +8,7 @@ function Post({ post }) {
     title,
     author: { name },
     score,
+    created,
   } = post;
   console.log(post);
 
@@ -16,10 +19,15 @@ function Post({ post }) {
       </div>
 
       <section className="w-full flex flex-col text-left px-2">
-        <div>
-          <p>Posted by {name} time ago.</p>
+        <div className="my-1">
+          <p className=" text-xs text-[#818384]">
+            Posted by <Link className="hover:underline hover:text-neutral-400">u/{name}</Link>{' '}
+            {formatDistance(new Date(created * 1000), new Date(), {
+              addSuffix: true,
+            })}
+          </p>
         </div>
-        <h3>{title}</h3>
+        <h3 className="text-[#D7DADC] font-medium text-lg leading-5 my-1">{title}</h3>
         <p>{selftext}</p>
 
         <div className="w-full">
