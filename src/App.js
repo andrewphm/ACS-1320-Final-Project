@@ -1,5 +1,4 @@
 import './App.css';
-import './snoowrap-v1.js';
 import React, { useState, useEffect } from 'react';
 import Home from './pages/Home';
 
