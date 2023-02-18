@@ -2,7 +2,6 @@ import React from 'react';
 import { formatDistance } from 'date-fns';
 import { Link } from 'react-router-dom';
 import YoutubeIFrame from '../YoutubeIFrame';
-import { faSquareCaretUp } from '@fortawesome/free-regular-svg-icons';
 
 function Post({ post }) {
   const {
@@ -25,12 +24,13 @@ function Post({ post }) {
   if (gallery_data) return;
 
   return (
-    <article className="bg-[#1A1A1B] border-[#343536] border flex w-[619px] text-white mt-5">
-      <div className="p-3 w-[40px] bg-[#161617] flex justify-center">
-        <i class="fa-regular fa-square-caret-up"></i>
-        <p className=" whitespace-nowrap">
+    <article className="bg-[#1A1A1B] border-[#343536] border flex w-[619px] text-white mt-5 cursor-pointer rounded hover:border-neutral-500">
+      <div className="p-3 w-[40px] bg-[#161617] flex items-center flex-col gap-y-3 mt-2">
+        <i class="cursor-pointer fa-regular fa-lg fa-square-caret-up text-[#FF4500] hover:scale-[1.10]"></i>
+        <p className="whitespace-nowrap text-xs font-bold">
           {score >= 1000 ? window.numeral(score).format('0.0a') : score}
         </p>
+        <i class="cursor-pointer fa-regular fa-lg fa-square-caret-down text-[#7193FF] hover:scale-[1.10]"></i>
       </div>
 
       <section className="w-full flex flex-col text-left px-2">
@@ -40,7 +40,6 @@ function Post({ post }) {
             {formatDistance(new Date(created * 1000), new Date(), {
               addSuffix: true,
             })}
-            <i class="fa-regular fa-square-caret-up"></i>
           </p>
         </div>
         <h3 className="text-[#D7DADC] font-medium text-lg leading-5 my-1">{title}</h3>
@@ -56,19 +55,22 @@ function Post({ post }) {
 
         {post_hint === 'image' && <img src={post.preview.images[0].source.url} alt="" />}
 
-        <div className="w-full">
-          <a href="">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-              <path fill="none" d="M0 0h24v24H0z" />
-              <path
-                fill="white"
-                d="M7.291 20.824L2 22l1.176-5.291A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.956 9.956 0 0 1-4.709-1.176zm.29-2.113l.653.35A7.955 7.955 0 0 0 12 20a8 8 0 1 0-8-8c0 1.334.325 2.618.94 3.766l.349.653-.655 2.947 2.947-.655z"
-              />
-            </svg>
-          </a>
-          <a href="">Share</a>
-          <a href="">Save</a>
-          <a href="">...</a>
+        <div className="w-full text-[#818384] text-xs font-bold flex gap-x-2">
+          <button className="py-3 px-2 hover:bg-[#2D2D2E]">
+            <i class="fa-regular fa-comment fa-lg mr-1"></i>
+            <span>57 comments</span>
+          </button>
+          <button className="py-3 px-3 hover:bg-[#2D2D2E]">
+            <i class="fa-solid fa-gift mr-1 fa-lg"></i>
+            <span>Award</span>
+          </button>
+          <button className="py-3 px-2 hover:bg-[#2D2D2E]">
+            <i class="fa-solid fa-share mr-1 fa-lg"></i>
+            Share
+          </button>
+          <button className="py-3 px-2 hover:bg-[#2D2D2E]">
+            <i class="fa-regular fa-bookmark mr-1 fa-lg"></i> Save
+          </button>
         </div>
       </section>
     </article>
