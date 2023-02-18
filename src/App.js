@@ -6,6 +6,7 @@ import Feed from './components/Feed';
 
 function App() {
   const [posts, setPosts] = useState(null);
+  const [subreddit, setSubreddit] = useState(null);
 
   const reddit = new window.snoowrap({
     userAgent: 'reedit/1.0',
@@ -19,8 +20,8 @@ function App() {
 
   useEffect(() => {
     async function fetchPosts() {
-      const subreddit = 'pics';
-      const res = await reddit.getHot(subreddit);
+      const subreddit = 'all';
+      const res = await reddit.getHot();
       setPosts(res);
     }
 
@@ -30,7 +31,7 @@ function App() {
   return (
     <div className="App bg-black  min-h-screen">
       <Home />
-
+      {console.log()}
       {posts && (
         <div className="w-full flex justify-center items-center">
           <Feed posts={posts} />

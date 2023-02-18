@@ -4,7 +4,6 @@ import { Link, useParams, useLocation } from 'react-router-dom';
 function Header() {
   const location = useLocation();
   const params = useParams();
-  console.log(params);
 
   return (
     <header className="stick top-0 z-50 flex min-h-[60px] w-full items-center border-b border-[#343536] bg-[#1A1A1B] px-3">
