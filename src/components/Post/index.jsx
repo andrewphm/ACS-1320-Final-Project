@@ -2,6 +2,7 @@ import React from 'react';
 import { formatDistance } from 'date-fns';
 import { Link } from 'react-router-dom';
 import YoutubeIFrame from '../YoutubeIFrame';
+import { faSquareCaretUp } from '@fortawesome/free-regular-svg-icons';
 
 function Post({ post }) {
   const {
@@ -26,7 +27,10 @@ function Post({ post }) {
   return (
     <article className="bg-[#1A1A1B] border-[#343536] border flex w-[619px] text-white mt-5">
       <div className="p-3 w-[40px] bg-[#161617] flex justify-center">
-        <p>{score}</p>
+        <i class="fa-regular fa-square-caret-up"></i>
+        <p className=" whitespace-nowrap">
+          {score >= 1000 ? window.numeral(score).format('0.0a') : score}
+        </p>
       </div>
 
       <section className="w-full flex flex-col text-left px-2">
@@ -36,6 +40,7 @@ function Post({ post }) {
             {formatDistance(new Date(created * 1000), new Date(), {
               addSuffix: true,
             })}
+            <i class="fa-regular fa-square-caret-up"></i>
           </p>
         </div>
         <h3 className="text-[#D7DADC] font-medium text-lg leading-5 my-1">{title}</h3>
