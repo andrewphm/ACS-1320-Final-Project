@@ -13,9 +13,15 @@ function Post({ post }) {
     media_embed: { content },
     is_video,
     domain,
+    crosspost_parent,
+    post_hint,
+    gallery_data,
   } = post;
 
   console.log(post);
+
+  if (crosspost_parent) return;
+  if (gallery_data) return;
 
   return (
     <article className="bg-[#1A1A1B] border-[#343536] border flex w-[619px] text-white mt-5">
@@ -35,13 +41,15 @@ function Post({ post }) {
         <h3 className="text-[#D7DADC] font-medium text-lg leading-5 my-1">{title}</h3>
         <p>{selftext}</p>
 
-        {domain.includes('you') && <YoutubeIFrame iFrame={post.media_embed.content} />}
+        {domain.includes('you') && content && <YoutubeIFrame iFrame={post.media_embed.content} />}
 
         {is_video && (
           <div>
             <video src={post.media.reddit_video.fallback_url} controls></video>
           </div>
         )}
+
+        {post_hint === 'image' && <img src={post.preview.images[0].source.url} alt="" />}
 
         <div className="w-full">
           <a href="">
