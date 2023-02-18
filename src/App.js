@@ -17,13 +17,6 @@ function App() {
 
   // Use the API to fetch posts from a subreddit
 
-  async function fetchPosts() {
-    const subreddit = 'learnjavascript';
-    const res = await reddit.getHot(subreddit);
-
-    reddit.setPosts(res[0]);
-  }
-
   useEffect(() => {
     async function fetchPosts() {
       const subreddit = 'videos';

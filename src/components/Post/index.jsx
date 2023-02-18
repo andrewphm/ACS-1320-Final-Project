@@ -1,6 +1,7 @@
 import React from 'react';
 import { formatDistance } from 'date-fns';
 import { Link } from 'react-router-dom';
+import YoutubeIFrame from '../YoutubeIFrame';
 
 function Post({ post }) {
   const {
@@ -9,7 +10,11 @@ function Post({ post }) {
     author: { name },
     score,
     created,
+    media_embed: { content },
+    is_video,
+    domain,
   } = post;
+
   console.log(post);
 
   return (
@@ -29,6 +34,14 @@ function Post({ post }) {
         </div>
         <h3 className="text-[#D7DADC] font-medium text-lg leading-5 my-1">{title}</h3>
         <p>{selftext}</p>
+
+        {domain.includes('you') && <YoutubeIFrame iFrame={post.media_embed.content} />}
+
+        {is_video && (
+          <div>
+            <video src={post.media.reddit_video.fallback_url} controls></video>
+          </div>
+        )}
 
         <div className="w-full">
           <a href="">
