@@ -1,8 +1,8 @@
 import './App.css';
-import './snoowrap-v1';
+import './snoowrap-v1.js';
 import React, { useState, useEffect } from 'react';
 import Home from './pages/Home';
-import Post from './components/Post';
+
 import Feed from './components/Feed';
 
 function App() {
