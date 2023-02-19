@@ -25,7 +25,7 @@ function Post({ post }) {
   if (gallery_data) return;
 
   return (
-    <article className="bg-[#1A1A1B] border-[#343536] border flex w-[619px] text-white mt-5 cursor-pointer rounded hover:border-neutral-500">
+    <article className="bg-[#1A1A1B] border-[#343536] border flex w-full text-white mt-5 cursor-pointer rounded hover:border-neutral-500">
       <div className="p-3 w-[40px] bg-[#161617] flex items-center flex-col gap-y-3 mt-2">
         <i className="cursor-pointer fa-regular fa-lg fa-square-caret-up text-[#FF4500] hover:scale-[1.10]"></i>
         <p className="whitespace-nowrap text-xs font-bold">

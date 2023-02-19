@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import Home from './pages/Home';
-
+import Filter from './components/Filter';
 import Feed from './components/Feed';
 
 function App() {
@@ -20,8 +20,8 @@ function App() {
 
   useEffect(() => {
     async function fetchPosts() {
-      const subreddit = 'all';
-      const res = await reddit.getHot();
+      const subreddit = 'videos';
+      const res = await reddit.getHot(subreddit);
       setPosts(res);
     }
 
@@ -31,7 +31,7 @@ function App() {
   return (
     <div className="App bg-black  min-h-screen">
       <Home />
-      {console.log()}
+      <Filter />
       {posts && (
         <div className="w-full flex justify-center items-center">
           <Feed posts={posts} />

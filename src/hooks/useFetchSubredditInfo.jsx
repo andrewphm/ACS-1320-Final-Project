@@ -8,12 +8,12 @@ function useFetchSubredditInfo(subreddit) {
   useEffect(() => {
     const fetchSubredditData = async () => {
       try {
-        // console.log(subreddit);
         const {
-          data: {
-            data: { icon_img, public_description },
-          },
+          data: { data },
         } = await axios.get(`https://www.reddit.com/${subreddit}/about.json`);
+
+        const { icon_img, public_description } = data;
+
         setInfo({ icon_img, public_description });
       } catch (error) {
         console.log(error);
