@@ -9,7 +9,7 @@ function SubredditInfo({ data }) {
         <hr className="h-[1px] border-none bg-neutral-500 my-1" />
         <p className="my-2">{data.public_description}</p>
         <p className="my-3 text-neutral-500 text-sm font-bold">
-          <i class="fa-solid fa-cake-candles mr-1 "></i>
+          <i clasName="fa-solid fa-cake-candles mr-1 "></i>
           Created{' '}
           {new Date(data.created * 1000).toLocaleString('en-US', {
             year: 'numeric',

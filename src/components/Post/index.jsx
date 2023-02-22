@@ -8,7 +8,7 @@ function Post({ post }) {
   const {
     selftext,
     title,
-    author: { name },
+    author,
     score,
     created,
     media_embed: { content },
@@ -17,12 +17,14 @@ function Post({ post }) {
     crosspost_parent,
     post_hint,
     gallery_data,
+    stickied,
   } = post;
 
   const data = useFetchSubredditInfo(post.subreddit_name_prefixed);
 
   if (crosspost_parent) return;
   if (gallery_data) return;
+  if (stickied) return;
 
   return (
     <article className="bg-[#1A1A1B] border-[#343536] border flex w-full text-white mt-5 cursor-pointer rounded hover:border-neutral-500">
@@ -38,7 +40,9 @@ function Post({ post }) {
         <div className="my-1 flex items-center text-xs text-white">
           <div className="flex items-center gap-x-1">
             {data?.icon_img ? (
-              <img src={data?.icon_img} alt="" className="w-5 h-5 rounded-full" />
+              <div className="bg-black h-5 w-5 rounded-full">
+                <img src={data?.icon_img} alt="" className="w-5 h-5 rounded-full" />
+              </div>
             ) : (
               <div className="w-5 h-5 rounded-full border-black border bg-white">
                 <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
@@ -46,12 +50,14 @@ function Post({ post }) {
                 </svg>
               </div>
             )}
-            <p className="font-bold hover:underline">{post.subreddit_name_prefixed} </p>
+            <Link to={post.subreddit_name_prefixed}>
+              <p className="font-bold hover:underline">{post.subreddit_name_prefixed} </p>
+            </Link>
           </div>
 
           <span className="px-1"> • </span>
           <p className=" text-xs text-[#818384]">
-            Posted by <Link className="hover:underline hover:text-neutral-400"> u/{name}</Link>{' '}
+            Posted by <Link className="hover:underline hover:text-neutral-400"> u/{author}</Link>{' '}
             {formatDistance(new Date(created * 1000), new Date(), {
               addSuffix: true,
             })}
