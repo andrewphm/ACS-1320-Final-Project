@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { fetchSubreddit } from '../../API';
 
 function SubredditInfo({ subreddit }) {
   const [data, setData] = useState(null);

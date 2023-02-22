@@ -19,8 +19,9 @@ function Post({ post }) {
     gallery_data,
   } = post;
 
-  const { info, icon } = useFetchSubredditInfo(post.subreddit_name_prefixed);
+  const data = useFetchSubredditInfo(post.subreddit_name_prefixed);
 
+  console.log('data: ', data);
   if (crosspost_parent) return;
   if (gallery_data) return;
 
@@ -35,9 +36,23 @@ function Post({ post }) {
       </div>
 
       <section className="w-full flex flex-col text-left px-2">
-        <div className="my-1">
+        <div className="my-1 flex items-center text-xs text-white">
+          <div className="flex items-center gap-x-1">
+            {data.icon_img ? (
+              <img src={data?.icon_img} alt="" className="w-5 h-5 rounded-full" />
+            ) : (
+              <div className="w-5 h-5 rounded-full border-black border bg-white">
+                <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                </svg>
+              </div>
+            )}
+            <p className="font-bold hover:underline">{post.subreddit_name_prefixed} </p>
+          </div>
+
+          <span className="px-1"> • </span>
           <p className=" text-xs text-[#818384]">
-            Posted by <Link className="hover:underline hover:text-neutral-400">u/{name}</Link>{' '}
+            Posted by <Link className="hover:underline hover:text-neutral-400"> u/{name}</Link>{' '}
             {formatDistance(new Date(created * 1000), new Date(), {
               addSuffix: true,
             })}

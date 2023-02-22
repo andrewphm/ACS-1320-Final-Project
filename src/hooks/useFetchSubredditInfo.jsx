@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function useFetchSubredditInfo(subreddit) {
-  const [info, setInfo] = useState({});
+  const [data, setData] = useState(null);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -12,9 +12,7 @@ function useFetchSubredditInfo(subreddit) {
           data: { data },
         } = await axios.get(`https://www.reddit.com/${subreddit}/about.json`);
 
-        const { icon_img, public_description } = data;
-
-        setInfo({ icon_img, public_description });
+        setData(data);
       } catch (error) {
         console.log(error);
         setError(true);
@@ -24,7 +22,7 @@ function useFetchSubredditInfo(subreddit) {
     fetchSubredditData();
   }, []);
 
-  return { info };
+  return data;
 }
 
 export default useFetchSubredditInfo;
