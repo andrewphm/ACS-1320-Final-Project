@@ -6,8 +6,8 @@ function Header() {
   const params = useParams();
 
   return (
-    <header className="sticky top-0 z-50 flex min-h-[60px] w-full items-center border-b border-[#343536] bg-[#1A1A1B] px-3">
-      <div className=" w-[150px] h-[60px] flex justify-center items-center relative gap-2">
+    <header className="sticky top-0 z-50 flex min-h-[50px] w-full items-center border-b border-[#343536] bg-[#1A1A1B] px-3">
+      <div className=" w-[150px] h-[50px] flex justify-center items-center relative gap-2">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" className=" w-8 h-8 ">
           <g>
             <circle fill="#FF4500" cx="10" cy="10" r="10" className="w-full"></circle>
