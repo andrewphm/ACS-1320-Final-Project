@@ -12,6 +12,8 @@ function App() {
         <Route path="/new" element={<Home />} />
         <Route path="/top" element={<Home />} />
         <Route path="/r/:subreddit" element={<Subreddit />} />
+        <Route path="/r/:subreddit/new" element={<Subreddit />} />
+        <Route path="/r/:subreddit/top" element={<Subreddit />} />
       </Routes>
     </Router>
   );

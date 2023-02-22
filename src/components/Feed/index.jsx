@@ -13,7 +13,7 @@ function Feed({ subreddit }) {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        console.log(`${URL}${filter[filter.length - 1]}/.json`);
+        // console.log(`${URL}${filter[filter.length - 1]}/.json`);
         const { data } = await axios.get(`${URL}${filter[filter.length - 1]}/.json`);
         let fetchedPosts = data.data.children.map((post) => post.data);
         setPosts(fetchedPosts);
