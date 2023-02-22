@@ -31,7 +31,7 @@ function Home() {
       <Header />
 
       <main className=" bg-black min-h-screen flex w-screen px-16 py-5 relative">
-        <div className="flex gap-x-10 w-full justify-center">
+        <div className="flex w-full justify-center">
           <FeaturedSubreddits />
           <div className="">
             <Filter />
