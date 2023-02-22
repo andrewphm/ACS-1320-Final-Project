@@ -3,7 +3,7 @@ import Post from '../Post';
 
 function Feed({ posts }) {
   return (
-    <section className="flex flex-col gap-x-2 w-[619px]">
+    <section className="flex flex-col gap-x-2 w-[640px]">
       {posts.map((post) => {
         return <Post post={post} />;
       })}
