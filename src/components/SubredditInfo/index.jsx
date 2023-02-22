@@ -1,7 +1,6 @@
 import React from 'react';
 
 function SubredditInfo({ data }) {
-  console.log(data);
   return (
     <section className="w-[270px] text-white bg-[#1A1A1B] border-[#343536] border p-2 h-fit rounded-sm relative left-7">
       <div>
@@ -9,7 +8,7 @@ function SubredditInfo({ data }) {
         <hr className="h-[1px] border-none bg-neutral-500 my-1" />
         <p className="my-2">{data.public_description}</p>
         <p className="my-3 text-neutral-500 text-sm font-bold">
-          <i clasName="fa-solid fa-cake-candles mr-1 "></i>
+          <i className="fa-solid fa-cake-candles mr-1 "></i>
           Created{' '}
           {new Date(data.created * 1000).toLocaleString('en-US', {
             year: 'numeric',

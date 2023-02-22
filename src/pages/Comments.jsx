@@ -1,13 +1,25 @@
 import React from 'react';
 import Header from '../components/Header';
-import { useParams } from 'react-router';
+import { useParams, useLocation } from 'react-router';
+import useFetchSubredditInfo from '../hooks/useFetchSubredditInfo';
+import SubredditInfo from '../components/SubredditInfo';
+import Filter from '../components/Filter';
+import Feed from '../components/Feed';
+// import Post from '../components/Post';
+import useFetchComments from '../hooks/useFetchComments';
 
 function Comments() {
+  const { subreddit, id, title } = useParams();
+  const location = useLocation();
+  console.log(location.pathname);
+  const data = useFetchSubredditInfo(`r/${subreddit}`);
+  const { comments, post } = useFetchComments(location.pathname);
+
   return (
     <>
       <Header />
       {data && (
-        <main className="w-screen bg-black">
+        <main className="w-screen bg-black min-h-screen">
           <header className="w-full">
             <div className="h-20 w-full bg-slate-500"></div>
             <div className="bg-[#1A1A1B]">
@@ -38,12 +50,7 @@ function Comments() {
 
           <section className=" py-10 w-[1152px] mx-auto">
             <div className="flex w-full justify-center">
-              <div className="">
-                <Filter />
-                <div className="w-full flex justify-center items-center">
-                  <Feed subreddit={subreddit} />
-                </div>
-              </div>
+              <div className="">{/* <Post post={post} /> */}</div>
               <SubredditInfo data={data} />
             </div>
           </section>

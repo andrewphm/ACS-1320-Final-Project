@@ -3,6 +3,7 @@ import React from 'react';
 import Home from './pages/Home';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Subreddit from './pages/Subreddit';
+import Comments from './pages/Comments';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/r/:subreddit" element={<Subreddit />} />
         <Route path="/r/:subreddit/new" element={<Subreddit />} />
         <Route path="/r/:subreddit/top" element={<Subreddit />} />
+        <Route path="/r/:subreddit/comments/:id/:title" element={<Comments />} />
       </Routes>
     </Router>
   );
