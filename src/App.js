@@ -9,6 +9,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/new" element={<Home />} />
+        <Route path="/top" element={<Home />} />
         <Route path="/r/:subreddit" element={<Subreddit />} />
       </Routes>
     </Router>
