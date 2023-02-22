@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Filter from '../components/Filter';
 import Feed from '../components/Feed';
 import FeaturedSubreddits from '../components/FeaturedSubreddits';
+import axios from 'axios';
 
 function Home() {
   const [posts, setPosts] = useState(null);
@@ -18,11 +19,10 @@ function Home() {
 
   useEffect(() => {
     async function fetchPosts() {
-      const subreddit = 'videos';
+      const subreddit = 'all';
       const res = await reddit.getHot(subreddit);
       setPosts(res);
     }
-
     fetchPosts();
   }, []);
 
