@@ -21,7 +21,6 @@ function Post({ post }) {
 
   const data = useFetchSubredditInfo(post.subreddit_name_prefixed);
 
-  console.log('data: ', data);
   if (crosspost_parent) return;
   if (gallery_data) return;
 
@@ -38,7 +37,7 @@ function Post({ post }) {
       <section className="w-full flex flex-col text-left px-2">
         <div className="my-1 flex items-center text-xs text-white">
           <div className="flex items-center gap-x-1">
-            {data.icon_img ? (
+            {data?.icon_img ? (
               <img src={data?.icon_img} alt="" className="w-5 h-5 rounded-full" />
             ) : (
               <div className="w-5 h-5 rounded-full border-black border bg-white">

@@ -17,7 +17,7 @@ function FeaturedSubreddits() {
   ];
 
   return (
-    <div className="w-[270px] text-white bg-[#1A1A1B] border-[#343536] border p-2">
+    <div className="w-[270px] text-white bg-[#1A1A1B] border-[#343536] border p-2  h-fit rounded-md">
       <h3>FEATURED SUBREDDITS</h3>
       <ul>
         {subreddits.map((subreddit, i) => {

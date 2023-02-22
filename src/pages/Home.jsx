@@ -27,16 +27,23 @@ function Home() {
   }, []);
 
   return (
-    <div className="App bg-black  min-h-screen">
+    <>
       <Header />
-      <Filter />
-      <FeaturedSubreddits />
-      {posts && (
-        <div className="w-full flex justify-center items-center">
-          <Feed posts={posts} />
+
+      <main className=" bg-black min-h-screen flex w-screen px-16 py-5 relative">
+        <div className="flex gap-x-10 w-full justify-center">
+          <FeaturedSubreddits />
+          <div className="">
+            <Filter />
+            {posts && (
+              <div className="w-full flex justify-center items-center">
+                <Feed posts={posts} />
+              </div>
+            )}
+          </div>
         </div>
-      )}
-    </div>
+      </main>
+    </>
   );
 }
 

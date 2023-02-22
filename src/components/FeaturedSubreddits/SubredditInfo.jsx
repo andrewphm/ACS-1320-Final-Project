@@ -27,17 +27,17 @@ function SubredditInfo({ subreddit }) {
     <Link to={`r/${subreddit}`}>
       <li className="flex gap-x-3 hover:bg-neutral-800 items-center p-2 rounded-md">
         {data?.icon_img ? (
-          <img src={data?.icon_img} alt="" className="w-9 h-9 rounded-full" />
+          <img src={data?.icon_img} alt="" className="w-8 h-8 rounded-full" />
         ) : (
-          <div className="w-9 h-9 rounded-full border-black border bg-white">
+          <div className="w-8 h-8 rounded-full border-black border bg-white">
             <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
             </svg>
           </div>
         )}
         <div className="text-left">
-          <p className="font-medium">{`r/${subreddit}`}</p>
-          <p className="text-sm">{data?.subscribers.toLocaleString('en-US')} subscribers</p>
+          <p className="font-medium text-sm">{`r/${subreddit}`}</p>
+          <p className="text-xs">{data?.subscribers.toLocaleString('en-US')} subscribers</p>
         </div>
       </li>
     </Link>
