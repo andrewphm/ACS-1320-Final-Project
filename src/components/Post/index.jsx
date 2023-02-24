@@ -18,7 +18,11 @@ function Post({ post }) {
     post_hint,
     gallery_data,
     stickied,
+    permalink,
+    num_comments,
   } = post;
+
+  console.log(post);
 
   const data = useFetchSubredditInfo(post.subreddit_name_prefixed);
 
@@ -77,10 +81,12 @@ function Post({ post }) {
         {post_hint === 'image' && <img src={post.preview.images[0].source.url} alt="" />}
 
         <div className="w-full text-[#818384] text-xs font-bold flex gap-x-2">
-          <button className="py-3 px-2 hover:bg-[#2D2D2E]">
-            <i className="fa-regular fa-comment fa-lg mr-1"></i>
-            <span>57 comments</span>
-          </button>
+          <Link to={`${permalink}`}>
+            <button className="py-3 px-2 hover:bg-[#2D2D2E]">
+              <i className="fa-regular fa-comment fa-lg mr-1"></i>
+              <span>{num_comments} comments</span>
+            </button>
+          </Link>
           <button className="py-3 px-3 hover:bg-[#2D2D2E]">
             <i className="fa-solid fa-gift mr-1 fa-lg"></i>
             <span>Award</span>

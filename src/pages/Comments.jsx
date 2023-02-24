@@ -5,15 +5,14 @@ import useFetchSubredditInfo from '../hooks/useFetchSubredditInfo';
 import SubredditInfo from '../components/SubredditInfo';
 import Filter from '../components/Filter';
 import Feed from '../components/Feed';
-// import Post from '../components/Post';
+import Post from '../components/Post';
 import useFetchComments from '../hooks/useFetchComments';
 
 function Comments() {
-  const { subreddit, id, title } = useParams();
+  const { subreddit } = useParams();
   const location = useLocation();
-  console.log(location.pathname);
   const data = useFetchSubredditInfo(`r/${subreddit}`);
-  const { comments, post } = useFetchComments(location.pathname);
+  const { comments, post, loading, error } = useFetchComments(location.pathname);
 
   return (
     <>
@@ -50,8 +49,14 @@ function Comments() {
 
           <section className=" py-10 w-[1152px] mx-auto">
             <div className="flex w-full justify-center">
-              <div className="">{/* <Post post={post} /> */}</div>
-              <SubredditInfo data={data} />
+              {post && (
+                <>
+                  <div className="">
+                    <Post post={post} />
+                  </div>
+                  <SubredditInfo data={data} />
+                </>
+              )}
             </div>
           </section>
         </main>
