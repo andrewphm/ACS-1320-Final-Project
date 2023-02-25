@@ -20,6 +20,7 @@ function Post({ post }) {
     stickied,
     permalink,
     num_comments,
+    url,
   } = post;
 
   console.log(post);
@@ -31,13 +32,13 @@ function Post({ post }) {
   if (stickied) return;
 
   return (
-    <article className="bg-[#1A1A1B] border-[#343536] border flex w-full text-white mt-5 cursor-pointer rounded hover:border-neutral-500">
+    <article className="bg-[#1A1A1B] border-[#343536] border flex w-full  text-white mt-5 rounded hover:border-neutral-500">
       <div className="p-3 w-[40px] bg-[#161617] flex items-center flex-col gap-y-3 mt-2">
-        <i className="cursor-pointer fa-regular fa-lg fa-square-caret-up text-[#FF4500] hover:scale-[1.10]"></i>
+        <i className="cursor-pointer fa-regular fa-lg fa-square-caret-up text-neutral-500 hover:text-[#FF4500] hover:scale-[1.10]"></i>
         <p className="whitespace-nowrap text-xs font-bold">
           {score >= 1000 ? window.numeral(score).format('0.0a') : score}
         </p>
-        <i className="cursor-pointer fa-regular fa-lg fa-square-caret-down text-[#7193FF] hover:scale-[1.10]"></i>
+        <i className="cursor-pointer fa-regular fa-lg fa-square-caret-down text-neutral-500 hover:text-[#7193FF] hover:scale-[1.10]"></i>
       </div>
 
       <section className="w-full flex flex-col text-left px-2">
@@ -68,17 +69,36 @@ function Post({ post }) {
           </p>
         </div>
         <h3 className="text-[#D7DADC] font-medium text-lg leading-5 my-1">{title}</h3>
+
         <p>{selftext}</p>
 
+        {/* youtube video */}
         {domain.includes('you') && content && <YoutubeIFrame iFrame={post.media_embed.content} />}
 
+        {/* reddit video */}
         {is_video && (
           <div>
             <video src={post.media.reddit_video.fallback_url} controls></video>
           </div>
         )}
 
-        {post_hint === 'image' && <img src={post.preview.images[0].source.url} alt="" />}
+        {/* image */}
+        {post_hint === 'image' && <img src={url} className="w-full h-full" alt="" />}
+
+        {/* link */}
+        {post_hint === 'link' && (
+          <div className="flex items-center my-1">
+            <a
+              href={url}
+              target="_blank"
+              rel="noreferrer"
+              className=" text-[#4FBCFF] w-1/2 truncate text-xs"
+            >
+              {url}
+            </a>
+            <i className="cursor-pointer fa-solid fa-xs fa-arrow-up-right-from-square text-[#4FBCFF]"></i>
+          </div>
+        )}
 
         <div className="w-full text-[#818384] text-xs font-bold flex gap-x-2">
           <Link to={`${permalink}`}>
