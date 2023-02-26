@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-
 import useFetchSubredditInfo from '../hooks/useFetchSubredditInfo';
 import Feed from '../components/Feed';
 import Filter from '../components/Filter';

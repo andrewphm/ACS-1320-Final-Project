@@ -3,7 +3,7 @@ import { formatDistance } from 'date-fns';
 import { Link } from 'react-router-dom';
 import YoutubeIFrame from '../YoutubeIFrame';
 import useFetchSubredditInfo from '../../hooks/useFetchSubredditInfo';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import Skeleton from 'react-loading-skeleton';
 
 function Post({ post }) {
   const {
@@ -24,8 +24,6 @@ function Post({ post }) {
     url,
   } = post;
 
-  console.log(post);
-
   const data = useFetchSubredditInfo(post?.subreddit_name_prefixed);
 
   if (crosspost_parent) return;
@@ -42,7 +40,7 @@ function Post({ post }) {
         <i className="cursor-pointer fa-regular fa-lg fa-square-caret-down text-neutral-500 hover:text-[#7193FF] hover:scale-[1.10]"></i>
       </div>
 
-      <section className="w-full flex flex-col text-left px-2">
+      <section className="w-11/12 flex flex-col text-left px-2">
         <div className="mb-1 mt-2 flex items-center text-xs text-white">
           <div className="flex items-center gap-x-1">
             {data?.icon_img ? (
@@ -69,37 +67,49 @@ function Post({ post }) {
             })}
           </p>
         </div>
-        <h3 className="text-[#D7DADC] font-medium text-lg leading-5 my-2">{title}</h3>
+        <h3 className="text-[#D7DADC]  font-semibold text-xl leading-6 my-2">{title}</h3>
 
-        <p className="">{selftext}</p>
-
-        {/* youtube video */}
-        {domain?.includes('you') && content && <YoutubeIFrame iFrame={post.media_embed.content} />}
-
-        {/* reddit video */}
-        {is_video && (
-          <div className="bg-black w-full ">
-            <video className="mx-auto" src={post.media.reddit_video.fallback_url} controls></video>
+        <Link to={`${permalink}`}>
+          {/* text post */}
+          <div className="top-bottom-overflow-fade  relative">
+            <p className="max-h-[357px]">{selftext}</p>
           </div>
-        )}
 
-        {/* image */}
-        {post_hint === 'image' && <img src={url} className="w-full h-full" alt="" />}
+          {/* youtube video */}
+          {domain?.includes('you') && content && (
+            <YoutubeIFrame iFrame={post.media_embed.content} />
+          )}
 
+          {/* reddit video */}
+          {is_video && (
+            <div className="bg-black w-full ">
+              <video
+                className="mx-auto"
+                src={post.media.reddit_video.fallback_url}
+                controls
+              ></video>
+            </div>
+          )}
+
+          {/* image */}
+          {post_hint === 'image' && (
+            <div className="w-full">
+              <img src={url} className="max-h-[500px] mx-auto" alt="" />
+            </div>
+          )}
+        </Link>
         {/* link */}
-        {post_hint === 'link' && (
-          <div className="flex items-center my-1">
-            <a
-              href={url}
-              target="_blank"
-              rel="noreferrer"
-              className=" text-[#4FBCFF] w-1/2 truncate text-xs"
-            >
-              {url}
-            </a>
-            <i className="cursor-pointer fa-solid fa-xs fa-arrow-up-right-from-square text-[#4FBCFF]"></i>
-          </div>
-        )}
+        <div className="flex items-center w-1/2 my-1">
+          <a
+            href={url}
+            target="_blank"
+            rel="noreferrer"
+            className=" text-[#4FBCFF] truncate text-xs"
+          >
+            {url}
+          </a>
+          <i className="cursor-pointer fa-solid fa-xs fa-arrow-up-right-from-square ml-1 text-[#4FBCFF]"></i>
+        </div>
 
         <div className="w-full text-[#818384] text-xs font-bold flex gap-x-2">
           <Link to={`${permalink}`}>

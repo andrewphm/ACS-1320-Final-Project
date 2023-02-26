@@ -13,3 +13,12 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.fade {
+  background-image: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+
+.top-bottom-overflow-fade {
+  mask-image: linear-gradient(black 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(black 50%, transparent 100%);
+}

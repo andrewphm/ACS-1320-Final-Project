@@ -1,33 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchSubreddit } from '../../API';
 
 function SubredditInfo({ subreddit }) {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    const fetchInfo = async () => {
-      try {
-        const { data } = await axios.get(`https://www.reddit.com/r/${subreddit}/about.json`, {
-          headers: {
-            accept: 'application/json',
-          },
-        });
-        setData(data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchInfo();
-  }, []);
-
   return (
-    <Link to={`../r/${subreddit}`}>
+    <Link to={`../r/${subreddit.display_name}`}>
       <li className="flex gap-x-3 hover:bg-neutral-800 items-center p-2 rounded-md">
-        {data?.icon_img ? (
-          <img src={data?.icon_img} alt="" className="w-8 h-8 rounded-full" />
+        {subreddit.icon_img ? (
+          <img
+            src={subreddit.icon_img}
+            alt=""
+            className="w-8 h-8 rounded-full border border-neutral-700"
+          />
         ) : (
           <div className="w-8 h-8 rounded-full border-black border bg-white">
             <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
@@ -36,8 +19,8 @@ function SubredditInfo({ subreddit }) {
           </div>
         )}
         <div className="text-left">
-          <p className="font-medium text-sm">{`r/${subreddit}`}</p>
-          <p className="text-xs">{data?.subscribers.toLocaleString('en-US')} subscribers</p>
+          <p className="font-medium text-sm">{`r/${subreddit.display_name}`}</p>
+          <p className="text-xs">{subreddit.subscribers.toLocaleString('en-US')} subscribers</p>
         </div>
       </li>
     </Link>

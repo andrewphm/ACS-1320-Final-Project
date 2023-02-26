@@ -13,12 +13,11 @@ function Comments() {
   const { subreddit } = useParams();
   const location = useLocation();
   const data = useFetchSubredditInfo(`r/${subreddit}`);
-  const { comments, post, loading, error } = useFetchComments(location.pathname);
+  const { comments, post, loading } = useFetchComments(location.pathname);
 
   return (
     <>
       <Header />
-
       <main className="w-screen bg-black min-h-screen">
         <header className="w-full">
           <div className="h-20 w-full bg-slate-500"></div>
@@ -50,20 +49,18 @@ function Comments() {
           </div>
         </header>
 
-        <section className=" py-10 max-w-[1152px] mx-auto">
-          <div className="w-1/2">
+        <section className=" py-10 max-w-[970px] mx-auto">
+          <div className="w-4/6 mx-auto">
             {loading && (
               <SkeletonTheme baseColor="#202020" highlightColor="#444">
-                <Skeleton className="my-4" height={300} />
+                <Skeleton className="my-4" height={800} />
               </SkeletonTheme>
             )}
           </div>
 
           <section className="flex w-full justify-center relative bottom-3">
-            {console.log(loading)}
             {post && !loading && (
               <>
-                {console.log('Now loading comments')}
                 <div className="">
                   <PostWithComments post={post} comments={comments} />
                 </div>

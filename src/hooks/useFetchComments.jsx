@@ -16,7 +16,6 @@ function useFetchComments(pathname) {
         setPost(data[0].data.children[0].data);
 
         data[1].data.children.pop();
-        console.log(data[1].data.children);
 
         setComments(
           data[1].data.children.map(({ data: { body, author, score, created_utc } }) => {

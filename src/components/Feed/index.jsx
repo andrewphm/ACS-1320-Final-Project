@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Post from '../Post';
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation } from 'react-router';
 import axios from 'axios';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
@@ -17,7 +17,6 @@ function Feed({ subreddit }) {
 
     const fetchPosts = async () => {
       try {
-        // console.log(`${URL}${filter[filter.length - 1]}/.json`);
         const { data } = await axios.get(`${URL}${filter[filter.length - 1]}/.json`);
         let fetchedPosts = data.data.children.map((post) => post.data);
         setPosts(fetchedPosts);
@@ -28,7 +27,7 @@ function Feed({ subreddit }) {
   }, [location]);
 
   return (
-    <section className="flex flex-col gap-x-2 w-[640px]">
+    <section className="flex flex-col gap-x-2 max-w-[640px]">
       {loading && (
         <SkeletonTheme baseColor="#202020" highlightColor="#444">
           <Skeleton className="my-4" count={4} height={300} />

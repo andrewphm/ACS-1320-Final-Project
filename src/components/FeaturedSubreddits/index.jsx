@@ -1,29 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import SubredditInfo from './SubredditInfo';
 import axios from 'axios';
 
 function FeaturedSubreddits() {
-  const subreddits = [
-    'AskReddit',
-    'Pics',
-    'Videos',
-    'AmITheAsshole',
-    'TIFU',
-    'Unexpected',
-    'News',
-    'ThatsInsane',
-    'Funny',
-    'PublicFreakout',
-  ];
+  const [subreddits, setSubreddits] = useState(null);
 
   useEffect(() => {
     const fetchSubreddits = async () => {
       try {
-        const { data } = await axios.get('http://reddit.com/subreddits.json');
+        const { data } = await axios.get('http://www.reddit.com/subreddits.json');
+        setSubreddits(data.data.children.map(({ data }) => data));
       } catch (error) {
         console.log(error);
       }
     };
+    fetchSubreddits();
   }, []);
 
   return (
@@ -31,7 +22,7 @@ function FeaturedSubreddits() {
       <h3 className="text-center my-2 text-sm font-medium">FEATURED SUBREDDITS</h3>
       <hr className="h-[1px] border-none bg-neutral-500 mb-2" />
       <ul>
-        {subreddits.map((subreddit, i) => {
+        {subreddits?.map((subreddit, i) => {
           return (
             <div key={i}>
               <SubredditInfo subreddit={subreddit} />
