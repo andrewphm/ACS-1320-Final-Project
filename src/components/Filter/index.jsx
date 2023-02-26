@@ -1,28 +1,27 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 
-function Filter() {
-  const [filter, setFilter] = useState('hot');
-  const navigate = useNavigate();
+function Filter({ subreddit, setFilter, filter }) {
   const location = useLocation();
 
   return (
     <section className="flex flex-col w-[640px] bg-[#1A1A1B] border-[#343536] border rounded-sm p-3 text-white m-auto">
       <div className="flex gap-x-1">
-        <button
-          onClick={() => {
-            setFilter('hot');
-            navigate(`${location.pathname}/`);
-          }}
-          className={`${
-            filter === 'hot' && 'bg-neutral-700'
-          } px-3 py-1 rounded-3xl text-sm font-bold`}
-        >
-          <i className="fa-brands fa-hotjar"></i> Hot
-        </button>
+        <Link to={subreddit ? `/r/${subreddit}` : '/'}>
+          <button
+            onClick={() => {
+              setFilter('hot');
+            }}
+            className={`${
+              filter === 'hot' && 'bg-neutral-700'
+            } px-3 py-1 rounded-3xl text-sm font-bold`}
+          >
+            <i className="fa-brands fa-hotjar"></i> Hot
+          </button>
+        </Link>
 
-        <Link to={`/new`}>
+        <Link to={subreddit ? `/r/${subreddit}/new` : '/new'}>
           <button
             onClick={() => {
               setFilter('new');
@@ -35,7 +34,7 @@ function Filter() {
           </button>
         </Link>
 
-        <Link to={`/top`}>
+        <Link to={subreddit ? `/r/${subreddit}/top` : '/top'}>
           <button
             onClick={() => {
               setFilter('top');

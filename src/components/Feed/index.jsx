@@ -5,23 +5,23 @@ import axios from 'axios';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-function Feed({ subreddit }) {
+function Feed({ subreddit, filter }) {
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState(null);
   const location = useLocation();
-  const filter = location.pathname.split('/');
-  const URL = subreddit ? 'https://www.reddit.com/r/' : 'https://www.reddit.com/';
+  const URL = subreddit ? `https://www.reddit.com/r/${subreddit}/` : 'https://www.reddit.com/';
 
   useEffect(() => {
     setLoading(true);
-
     const fetchPosts = async () => {
       try {
-        const { data } = await axios.get(`${URL}${filter[filter.length - 1]}/.json`);
+        const { data } = await axios.get(`${URL}${filter}/.json`);
         let fetchedPosts = data.data.children.map((post) => post.data);
         setPosts(fetchedPosts);
-        setLoading(false);
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
+      setLoading(false);
     };
     fetchPosts();
   }, [location]);

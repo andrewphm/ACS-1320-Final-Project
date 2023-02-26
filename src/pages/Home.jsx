@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
 import Feed from '../components/Feed';
 import FeaturedSubreddits from '../components/FeaturedSubreddits';
-import axios from 'axios';
 
 function Home() {
+  const [filter, setFilter] = useState('hot');
   return (
     <>
       <Header />
@@ -13,9 +13,9 @@ function Home() {
         <div className="flex w-full justify-center">
           <FeaturedSubreddits />
           <div className="">
-            <Filter />
+            <Filter setFilter={setFilter} filter={filter} />
             <div className="w-full flex justify-center items-center">
-              <Feed subreddit={false} />
+              <Feed subreddit={false} filter={filter} />
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -9,10 +9,8 @@ import SubredditInfo from '../components/SubredditInfo';
 
 function Subreddit() {
   const { subreddit } = useParams();
-
+  const [filter, setFilter] = useState('hot');
   const data = useFetchSubredditInfo(`r/${subreddit}`);
-
-  useEffect(() => {}, []);
 
   return (
     <>
@@ -52,9 +50,9 @@ function Subreddit() {
           <section className=" py-10 w-[1152px] mx-auto">
             <div className="flex w-full justify-center">
               <div className="">
-                <Filter />
+                <Filter subreddit={subreddit} filter={filter} setFilter={setFilter} />
                 <div className="w-full flex justify-center items-center">
-                  <Feed subreddit={subreddit} />
+                  <Feed subreddit={subreddit} filter={filter} />
                 </div>
               </div>
               <SubredditInfo data={data} />
