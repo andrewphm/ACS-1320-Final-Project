@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useParams, useLocation } from 'react-router-dom';
 
 function Header() {
   const location = useLocation();
   const params = useParams();
+  const [search, setSearch] = useState('');
 
   return (
-    <header className="sticky top-0 z-50 flex min-h-[50px] w-full items-center border-b border-[#343536] bg-[#1A1A1B] px-3">
+    <header className="sticky top-0 z-50 flex min-h-[50px] w-full items-center border-b border-[#343536] bg-[#1A1A1B] px-10">
       <Link to="/">
         <div className=" w-[150px] h-[50px] flex justify-center items-center relative gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" className=" w-8 h-8 ">
@@ -37,7 +38,16 @@ function Header() {
         </div>
       </Link>
 
-      <div></div>
+      <div className="flex items-center relative mx-auto">
+        <i class="fa-solid fa-magnifying-glass left-7 relative text-neutral-300"></i>
+        <input
+          type="text"
+          className=" focus:border placeholder:text-neutral-300 bg-neutral-700 py-2 px-3 pl-8 rounded-full text-white outline-none w-full h-full"
+          placeholder="Search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
     </header>
   );
 }

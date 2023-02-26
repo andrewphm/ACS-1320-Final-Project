@@ -24,7 +24,7 @@ function SubredditInfo({ subreddit }) {
   }, []);
 
   return (
-    <Link to={`r/${subreddit}`}>
+    <Link to={`../r/${subreddit}`}>
       <li className="flex gap-x-3 hover:bg-neutral-800 items-center p-2 rounded-md">
         {data?.icon_img ? (
           <img src={data?.icon_img} alt="" className="w-8 h-8 rounded-full" />

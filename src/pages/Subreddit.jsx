@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
+
 import useFetchSubredditInfo from '../hooks/useFetchSubredditInfo';
 import Feed from '../components/Feed';
 import Filter from '../components/Filter';
@@ -37,10 +39,12 @@ function Subreddit() {
                     </div>
                   )}
 
-                  <div>
-                    <h1 className="text-white font-bold text-2xl">{data?.title}</h1>
-                    <h2 className="text-neutral-300 font-bold">{data?.display_name_prefixed}</h2>
-                  </div>
+                  <Link to={`../${data?.display_name_prefixed}`}>
+                    <div>
+                      <h1 className="text-white font-bold text-2xl">{data?.title}</h1>
+                      <h2 className="text-neutral-300 font-bold">{data?.display_name_prefixed}</h2>
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>

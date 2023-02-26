@@ -3,9 +3,10 @@ import { formatDistance } from 'date-fns';
 import { Link } from 'react-router-dom';
 import YoutubeIFrame from '../YoutubeIFrame';
 import useFetchSubredditInfo from '../../hooks/useFetchSubredditInfo';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import Skeleton from 'react-loading-skeleton';
+import Comment from '../Comment/';
 
-function Post({ post }) {
+function PostWithComments({ post, comments }) {
   const {
     selftext,
     title,
@@ -24,8 +25,6 @@ function Post({ post }) {
     url,
   } = post;
 
-  console.log(post);
-
   const data = useFetchSubredditInfo(post?.subreddit_name_prefixed);
 
   if (crosspost_parent) return;
@@ -33,7 +32,7 @@ function Post({ post }) {
   if (stickied) return;
 
   return (
-    <article className="bg-[#1A1A1B] border-[#343536] border flex w-full  text-white mt-5 rounded hover:border-neutral-500">
+    <article className="bg-[#1A1A1B] border-[#343536] border flex w-full  text-white mt-5 rounded hover:border-neutral-500 ">
       <div className="p-3 w-[40px] bg-[#161617] flex items-center flex-col gap-y-3 mt-2">
         <i className="cursor-pointer fa-regular fa-lg fa-square-caret-up text-neutral-500 hover:text-[#FF4500] hover:scale-[1.10]"></i>
         <p className="whitespace-nowrap text-xs py-1 font-bold">
@@ -69,7 +68,7 @@ function Post({ post }) {
             })}
           </p>
         </div>
-        <h3 className="text-[#D7DADC] font-medium text-lg leading-5 my-2">{title}</h3>
+        <h3 className="text-[#D7DADC] font-medium text-2xl leading-5 my-2">{title}</h3>
 
         <p className="">{selftext}</p>
 
@@ -101,28 +100,14 @@ function Post({ post }) {
           </div>
         )}
 
-        <div className="w-full text-[#818384] text-xs font-bold flex gap-x-2">
-          <Link to={`${permalink}`}>
-            <button className="py-3 px-2 hover:bg-[#2D2D2E]">
-              <i className="fa-regular fa-comment fa-lg mr-1"></i>
-              <span>{num_comments} comments</span>
-            </button>
-          </Link>
-          <button className="py-3 px-3 hover:bg-[#2D2D2E]">
-            <i className="fa-solid fa-gift mr-1 fa-lg"></i>
-            <span>Award</span>
-          </button>
-          <button className="py-3 px-2 hover:bg-[#2D2D2E]">
-            <i className="fa-solid fa-share mr-1 fa-lg"></i>
-            Share
-          </button>
-          <button className="py-3 px-2 hover:bg-[#2D2D2E]">
-            <i className="fa-regular fa-bookmark mr-1 fa-lg"></i> Save
-          </button>
-        </div>
+        <h2 className="text-2xl font-medium my-4">{comments.length} Comments</h2>
+
+        {comments.map((comment, i) => {
+          return <Comment key={i} comment={comment} />;
+        })}
       </section>
     </article>
   );
 }
 
-export default Post;
+export default PostWithComments;

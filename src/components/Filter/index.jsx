@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 
 function Filter() {
   const [filter, setFilter] = useState('hot');
@@ -20,28 +21,32 @@ function Filter() {
         >
           <i className="fa-brands fa-hotjar"></i> Hot
         </button>
-        <button
-          onClick={() => {
-            setFilter('new');
-            navigate(`${location.pathname}/new`);
-          }}
-          className={`${
-            filter === 'new' && 'bg-neutral-700'
-          } px-3 py-1 rounded-3xl text-sm font-bold`}
-        >
-          <i className="fa-solid fa-file"></i> New
-        </button>
-        <button
-          onClick={() => {
-            setFilter('top');
-            navigate(`${location.pathname}/top`);
-          }}
-          className={`${
-            filter === 'top' && 'bg-neutral-700'
-          } px-3 py-1 rounded-3xl text-sm font-bold`}
-        >
-          <i className="fa-solid fa-trophy"></i> Top
-        </button>
+
+        <Link to={`/new`}>
+          <button
+            onClick={() => {
+              setFilter('new');
+            }}
+            className={`${
+              filter === 'new' && 'bg-neutral-700'
+            } px-3 py-1 rounded-3xl text-sm font-bold`}
+          >
+            <i className="fa-solid fa-file"></i> New
+          </button>
+        </Link>
+
+        <Link to={`/top`}>
+          <button
+            onClick={() => {
+              setFilter('top');
+            }}
+            className={`${
+              filter === 'top' && 'bg-neutral-700'
+            } px-3 py-1 rounded-3xl text-sm font-bold`}
+          >
+            <i className="fa-solid fa-trophy"></i> Top
+          </button>
+        </Link>
       </div>
     </section>
   );
