@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ACS-1320-Final-Project/static/css/main.fa9231e1.css",
+    "main.js": "/ACS-1320-Final-Project/static/js/main.c7e8c7b0.js",
+    "index.html": "/ACS-1320-Final-Project/index.html",
+    "main.fa9231e1.css.map": "/ACS-1320-Final-Project/static/css/main.fa9231e1.css.map",
+    "main.c7e8c7b0.js.map": "/ACS-1320-Final-Project/static/js/main.c7e8c7b0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fa9231e1.css",
+    "static/js/main.c7e8c7b0.js"
+  ]
+}
