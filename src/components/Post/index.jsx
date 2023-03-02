@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { formatDistance } from 'date-fns';
 import { Link } from 'react-router-dom';
 import YoutubeIFrame from '../YoutubeIFrame';
@@ -26,18 +26,38 @@ function Post({ post }) {
 
   const data = useFetchSubredditInfo(post?.subreddit_name_prefixed);
 
+  const [upVote, setUpVote] = useState(false);
+  const [downVote, setDownVote] = useState(false);
+
+  const handleClickUpvote = () => {
+    setUpVote(!upVote);
+  };
+
+  const handleClickDownvote = () => {
+    setDownVote(!downVote);
+  };
+
   if (crosspost_parent) return;
   if (gallery_data) return;
   if (stickied) return;
-
   return (
     <article className="bg-[#1A1A1B] border-[#343536] border flex w-full  text-white mt-5 rounded hover:border-neutral-500">
       <div className="p-3 w-[40px] bg-[#161617] flex items-center flex-col gap-y-3 mt-2">
-        <i className="cursor-pointer fa-regular fa-lg fa-square-caret-up text-neutral-500 hover:text-[#FF4500] hover:scale-[1.10]"></i>
+        <i
+          onClick={handleClickUpvote}
+          className={`cursor-pointer fa-regular fa-lg fa-square-caret-up text-neutral-500 hover:text-[#FF4500] ${
+            upVote ? 'text-[#FF4500]' : ''
+          } hover:scale-[1.10]"`}
+        ></i>
         <p className="whitespace-nowrap text-xs py-1 font-bold">
           {score >= 1000 ? window.numeral(score).format('0.0a') : score || <Skeleton />}
         </p>
-        <i className="cursor-pointer fa-regular fa-lg fa-square-caret-down text-neutral-500 hover:text-[#7193FF] hover:scale-[1.10]"></i>
+        <i
+          onClick={handleClickDownvote}
+          className={`cursor-pointer fa-regular fa-lg fa-square-caret-down text-neutral-500 hover:text-[#7193FF] hover:scale-[1.10] ${
+            downVote && 'text-[#7193FF]'
+          }`}
+        ></i>
       </div>
 
       <section className="w-11/12 flex flex-col text-left px-2">
