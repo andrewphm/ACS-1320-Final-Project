@@ -2,4 +2,4 @@
 
 Reddit clone
 
-[Live preview](http://reddit.andrewpham.ca)
+[Live preview](https://andrewpham.ca/ACS-1320-Final-Project/)
