@@ -18,16 +18,16 @@ function Comments() {
   return (
     <>
       <Header />
-      <main className="w-screen bg-black min-h-screen">
+      <main className="w-full bg-black min-h-screen">
         <header className="w-full">
           <div className="h-20 w-full bg-slate-500"></div>
           <div className="bg-[#1A1A1B]">
-            <div className=" mx-auto max-w-5xl h-20 px-8">
+            <div className=" mx-auto relative container h-20 ">
               <div className="flex gap-x-3">
                 {data?.icon_img ? (
                   <img
                     src={data?.icon_img}
-                    className=" h-20 w-20 rounded-full relative bottom-4 border border-black"
+                    className="bg-black h-20 w-20 rounded-full relative bottom-4 border border-black"
                     alt=""
                   />
                 ) : (
@@ -50,7 +50,7 @@ function Comments() {
         </header>
 
         <section className=" py-10 max-w-[970px] mx-auto">
-          <div className="w-4/6 mx-auto">
+          <div className="w-11/12 mx-auto">
             {loading && (
               <SkeletonTheme baseColor="#202020" highlightColor="#444">
                 <Skeleton className="my-4" height={800} />
@@ -61,7 +61,7 @@ function Comments() {
           <section className="flex w-full justify-center relative bottom-3">
             {post && !loading && (
               <>
-                <div className="">
+                <div className="w-full sm:px-3">
                   <PostWithComments post={post} comments={comments} />
                 </div>
                 <SubredditInfo data={data} />

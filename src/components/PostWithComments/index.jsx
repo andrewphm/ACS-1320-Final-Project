@@ -33,7 +33,7 @@ function PostWithComments({ post, comments }) {
 
   return (
     <article className="bg-[#1A1A1B] border-[#343536] border flex w-full  text-white  rounded hover:border-neutral-500 ">
-      <div className="p-3 w-[40px] bg-[#161617] flex items-center flex-col gap-y-3 mt-2">
+      <div className="p-3 hidden md:flex w-[40px] bg-[#161617]  items-center flex-col gap-y-3 mt-2">
         <i className="cursor-pointer fa-regular fa-lg fa-square-caret-up text-neutral-500 hover:text-[#FF4500] hover:scale-[1.10]"></i>
         <p className="whitespace-nowrap text-xs py-1 font-bold">
           {score >= 1000 ? window.numeral(score).format('0.0a') : score || <Skeleton />}
@@ -68,7 +68,7 @@ function PostWithComments({ post, comments }) {
             })}
           </p>
         </div>
-        <h3 className="text-[#D7DADC] font-medium text-2xl leading-6 my-2">{title}</h3>
+        <h3 className="text-[#D7DADC] font-medium text-lg md:text-2xl leading-6 my-2">{title}</h3>
 
         <p className="">{selftext}</p>
 
@@ -100,7 +100,7 @@ function PostWithComments({ post, comments }) {
           </div>
         )}
 
-        <h2 className="text-2xl font-medium my-4">{comments.length} Comments</h2>
+        <h2 className="md:text-xl lg:text-2xl font-medium my-4">{comments.length} Comments</h2>
 
         {comments.map((comment, i) => {
           return <Comment key={i} comment={comment} />;

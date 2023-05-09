@@ -42,7 +42,7 @@ function Post({ post }) {
   if (stickied) return;
   return (
     <article className="bg-[#1A1A1B] border-[#343536] border flex w-full  text-white mt-5 rounded hover:border-neutral-500">
-      <div className="p-3 w-[40px] bg-[#161617] flex items-center flex-col gap-y-3 mt-2">
+      <div className="p-3 mt-2 hidden sm:flex w-[40px] bg-[#161617]  items-center flex-col gap-y-3">
         <i
           onClick={handleClickUpvote}
           className={`cursor-pointer fa-regular fa-lg fa-square-caret-up text-neutral-500 hover:text-[#FF4500] ${
@@ -50,7 +50,7 @@ function Post({ post }) {
           } hover:scale-[1.10]"`}
         ></i>
         <p className="whitespace-nowrap text-xs py-1 font-bold">
-          {score >= 1000 ? window.numeral(score).format('0.0a') : score || <Skeleton />}
+          {score >= 1000 ? window?.numeral(score).format('0.0a') : score || <Skeleton />}
         </p>
         <i
           onClick={handleClickDownvote}
@@ -60,7 +60,7 @@ function Post({ post }) {
         ></i>
       </div>
 
-      <section className="w-11/12 flex flex-col text-left px-2">
+      <section className="lg:w-11/12 w-full flex flex-col text-left px-2">
         <div className="mb-1 mt-2 flex items-center text-xs text-white">
           <div className="flex items-center gap-x-1">
             {data?.icon_img ? (
@@ -87,7 +87,7 @@ function Post({ post }) {
             })}
           </p>
         </div>
-        <h3 className="text-[#D7DADC]  font-semibold text-xl leading-6 my-2">{title}</h3>
+        <h3 className="text-[#D7DADC]  font-semibold md:text-xl leading-6 my-2">{title}</h3>
 
         <Link to={`${permalink}`}>
           {/* text post */}
@@ -113,13 +113,13 @@ function Post({ post }) {
 
           {/* image */}
           {post_hint === 'image' && (
-            <div className="w-full">
+            <div className="w-full my-2">
               <img src={url} className="max-h-[500px] mx-auto" alt="" />
             </div>
           )}
         </Link>
         {/* link */}
-        <div className="flex items-center w-1/2 my-1">
+        <div className="flex items-center w-11/12 md:w-1/2 my-1">
           <a
             href={url}
             target="_blank"
@@ -132,6 +132,25 @@ function Post({ post }) {
         </div>
 
         <div className="w-full text-[#818384] text-xs font-bold flex gap-x-2">
+          {/* voting on small */}
+          <div className=" flex  sm:hidden items-center gap-x-1  ">
+            <i
+              onClick={handleClickUpvote}
+              className={`cursor-pointer fa-regular fa-lg fa-square-caret-up text-neutral-500 hover:text-[#FF4500] ${
+                upVote ? 'text-[#FF4500]' : ''
+              } hover:scale-[1.10]"`}
+            ></i>
+            <p className="whitespace-nowrap text-xs text-white py-1 font-bold">
+              {score >= 1000 ? window?.numeral(score).format('0.0a') : score || <Skeleton />}
+            </p>
+            <i
+              onClick={handleClickDownvote}
+              className={`cursor-pointer fa-regular fa-lg fa-square-caret-down text-neutral-500 hover:text-[#7193FF] hover:scale-[1.10] ${
+                downVote && 'text-[#7193FF]'
+              }`}
+            ></i>
+          </div>
+
           <Link to={`${permalink}`}>
             <button className="py-3 px-2 hover:bg-[#2D2D2E]">
               <i className="fa-regular fa-comment fa-lg mr-1"></i>

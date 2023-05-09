@@ -16,16 +16,16 @@ function Subreddit() {
     <>
       <Header />
       {data && (
-        <main className="w-screen bg-black">
+        <main className="w-full bg-black">
           <header className="w-full">
             <div className="h-20 w-full bg-slate-500"></div>
             <div className="bg-[#1A1A1B]">
-              <div className=" mx-auto max-w-5xl h-20 px-8">
+              <div className=" mx-auto relative container h-20">
                 <div className="flex gap-x-3">
                   {data.icon_img ? (
                     <img
                       src={data?.icon_img}
-                      className=" h-20 w-20 rounded-full relative bottom-4 border border-black"
+                      className="bg-black h-20 w-20 rounded-full relative bottom-4 border border-black"
                       alt=""
                     />
                   ) : (
@@ -47,9 +47,9 @@ function Subreddit() {
             </div>
           </header>
 
-          <section className=" py-10 w-[1152px] mx-auto">
-            <div className="flex w-full justify-center">
-              <div className="">
+          <section className="py-5 lg:py-10 container mx-auto">
+            <div className="flex w-full justify-center lg:w-[640px] mx-auto gap-x-10">
+              <div className="w-full ">
                 <Filter subreddit={subreddit} filter={filter} setFilter={setFilter} />
                 <div className="w-full flex justify-center items-center">
                   <Feed subreddit={subreddit} filter={filter} />

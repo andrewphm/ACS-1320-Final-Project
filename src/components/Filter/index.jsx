@@ -6,7 +6,7 @@ function Filter({ subreddit, setFilter, filter }) {
   const location = useLocation();
 
   return (
-    <section className="flex flex-col w-[640px] bg-[#1A1A1B] border-[#343536] border rounded-sm p-3 text-white m-auto">
+    <section className="flex flex-col w-full  lg:w-[640px] bg-[#1A1A1B] border-[#343536] border rounded-sm p-3 text-white m-auto">
       <div className="flex gap-x-1">
         <Link to={subreddit ? `/r/${subreddit}` : '/'}>
           <button
