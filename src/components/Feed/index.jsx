@@ -27,7 +27,7 @@ function Feed({ subreddit, filter }) {
   }, [location]);
 
   return (
-    <section className="flex flex-col gap-x-2 w-full  lg:max-w-[640px] ">
+    <section className="flex flex-col gap-x-2 w-full  lg:max-w-[640px]" aria-label="Posts Feed">
       {loading && (
         <SkeletonTheme baseColor="#202020" highlightColor="#444">
           <Skeleton className="my-4" count={4} height={300} />

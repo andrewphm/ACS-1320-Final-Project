@@ -4,7 +4,6 @@ import Home from './pages/Home';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Subreddit from './pages/Subreddit';
 import Comments from './pages/Comments';
-import SubredditToggle from './components/SubredditToggle/SubredditToggle';
 
 function App() {
   return (

@@ -42,30 +42,32 @@ function Post({ post }) {
   if (stickied) return;
   return (
     <article className="bg-[#1A1A1B] border-[#343536] border flex w-full  text-white mt-5 rounded hover:border-neutral-500">
-      <div className="p-3 mt-2 hidden sm:flex w-[40px] bg-[#161617]  items-center flex-col gap-y-3">
-        <i
+      <aside className="p-3 mt-2 hidden sm:flex w-[40px] bg-[#161617]  items-center flex-col gap-y-3">
+        <button
           onClick={handleClickUpvote}
+          aria-label="Upvote"
           className={`cursor-pointer fa-regular fa-lg fa-square-caret-up text-neutral-500 hover:text-[#FF4500] ${
             upVote ? 'text-[#FF4500]' : ''
           } hover:scale-[1.10]"`}
-        ></i>
+        ></button>
         <p className="whitespace-nowrap text-xs py-1 font-bold">
           {score >= 1000 ? window?.numeral(score).format('0.0a') : score || <Skeleton />}
         </p>
-        <i
+        <button
+          aria-label="Downvote"
           onClick={handleClickDownvote}
           className={`cursor-pointer fa-regular fa-lg fa-square-caret-down text-neutral-500 hover:text-[#7193FF] hover:scale-[1.10] ${
             downVote && 'text-[#7193FF]'
           }`}
-        ></i>
-      </div>
+        ></button>
+      </aside>
 
       <section className="lg:w-11/12 w-full flex flex-col text-left px-2">
-        <div className="mb-1 mt-2 flex items-center text-xs text-white">
+        <header className="mb-1 mt-2 flex items-center text-xs text-white">
           <div className="flex items-center gap-x-1">
             {data?.icon_img ? (
               <div className="bg-black h-5 w-5 rounded-full">
-                <img src={data?.icon_img} alt="" className="w-5 h-5 rounded-full" />
+                <img src={data?.icon_img} alt="Subreddit Icon" className="w-5 h-5 rounded-full" />
               </div>
             ) : (
               <div className="w-5 h-5 rounded-full border-black border bg-white">
@@ -86,7 +88,7 @@ function Post({ post }) {
               addSuffix: true,
             })}
           </p>
-        </div>
+        </header>
         <h3 className="text-[#D7DADC]  font-semibold md:text-xl leading-6 my-2">{title}</h3>
 
         <Link to={`${permalink}`}>
@@ -114,7 +116,7 @@ function Post({ post }) {
           {/* image */}
           {post_hint === 'image' && (
             <div className="w-full my-2">
-              <img src={url} className="max-h-[500px] mx-auto" alt="" />
+              <img src={url} className="max-h-[500px] mx-auto" alt={title} />
             </div>
           )}
         </Link>
@@ -131,7 +133,7 @@ function Post({ post }) {
           <i className="cursor-pointer fa-solid fa-xs fa-arrow-up-right-from-square ml-1 text-[#4FBCFF]"></i>
         </div>
 
-        <div className="w-full text-[#818384] text-xs font-bold flex gap-x-2">
+        <nav className="w-full text-[#818384] text-xs font-bold flex gap-x-2">
           {/* voting on small */}
           <div className=" flex  sm:hidden items-center gap-x-1  ">
             <i
@@ -168,7 +170,7 @@ function Post({ post }) {
           <button className="py-3 px-2 hover:bg-[#2D2D2E]">
             <i className="fa-regular fa-bookmark mr-1 fa-lg"></i> Save
           </button>
-        </div>
+        </nav>
       </section>
     </article>
   );

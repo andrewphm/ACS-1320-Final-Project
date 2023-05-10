@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 function SubredditInfo({ subreddit }) {
   return (
-    <Link to={`../r/${subreddit.display_name}`}>
+    <Link to={`../r/${subreddit.display_name}`} aria-label={`Visit r/${subreddit.display_name}`}>
       <li className="flex gap-x-3 hover:bg-neutral-800 items-center p-2 rounded-md">
         {subreddit.icon_img ? (
           <img
             src={subreddit.icon_img}
-            alt=""
+            alt={`r/${subreddit.display_name} icon`}
             className="w-8 h-8 rounded-full border border-neutral-700"
           />
         ) : (

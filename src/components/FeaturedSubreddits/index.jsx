@@ -21,7 +21,7 @@ function FeaturedSubreddits() {
   }, []);
 
   return (
-    <div className="w-[330px] text-white hidden lg:block  bg-[#1A1A1B] border-[#343536] border p-2 h-fit rounded-md relative ">
+    <section className="w-[330px] text-white hidden lg:block  bg-[#1A1A1B] border-[#343536] border p-2 h-fit rounded-md relative ">
       <h3 className="text-center my-2 text-sm font-medium">FEATURED SUBREDDITS</h3>
       <hr className="h-[1px] border-none bg-neutral-500 mb-2" />
       <ul>
@@ -31,14 +31,10 @@ function FeaturedSubreddits() {
           </SkeletonTheme>
         )}
         {subreddits?.map((subreddit, i) => {
-          return (
-            <div key={i}>
-              <SubredditInfo subreddit={subreddit} />
-            </div>
-          );
+          return <SubredditInfo key={i} subreddit={subreddit} />;
         })}
       </ul>
-    </div>
+    </section>
   );
 }
 
